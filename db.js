@@ -5,7 +5,10 @@ require("dotenv").config();
 //const mongodbUrl="mongodb+srv://Girija:Giri2000@cluster0.tyd3i.mongodb.net/"
 const mongodbUrl=process.env.MONGODB_URL
 
-mongoose.connect(mongodbUrl)
+mongoose.connect(mongodbUrl,{
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+})
 
 const db=mongoose.connection
 

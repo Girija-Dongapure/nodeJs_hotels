@@ -3,7 +3,15 @@ const router=express.Router();
 
 const menuItem=require("../models/Menu");
 const Person = require("../models/Person");
-
+router.get("/",async(req,res) => {
+    try{
+        const response=await menuItem.find();
+        res.status(200).json(response);
+    }
+    catch(error){
+        res.status(500).json({error:"Internal server error"})
+    }
+})
 router.post("/",async(req,res) => {
     try{
         const data=req.body;
@@ -16,15 +24,7 @@ router.post("/",async(req,res) => {
         res.status(500).json({error:"Internal server error"})
     }
 })
-router.get("/",async(req,res) => {
-    try{
-        const response=await menuItem.find();
-        res.status(200).json(response);
-    }
-    catch(error){
-        res.status(500).json({error:"Internal server error"})
-    }
-})
+
 router.get("/:tasteType",async(req,res) => {
     try{
         const tasteType=req.params.tasteType;

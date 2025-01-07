@@ -2,7 +2,14 @@ const express=require("express");
 const router=express.Router();
 
 const Person=require("../models/Person");
-
+router.get("/",async(req,res) => {
+    try{
+        const data=await Person.find();
+        res.status(200).json(data)
+    }catch(err){
+        res.status(500).json({error:"Internal server error"})
+    }
+})
 router.post("/",async(req,res)=> {
    try
    { const data=req.body;
@@ -14,14 +21,7 @@ router.post("/",async(req,res)=> {
     res.status(500).json({error:"Internal server error"});
 }
 
-router.get("/",async(req,res) => {
-    try{
-        const data=await Person.find();
-        res.status(200).json(data)
-    }catch(err){
-        res.status(500).json({error:"Internal server error"})
-    }
-})
+
 router.get("/:workType",async(req,res)=>{
   try
   {  const workType=req.params.workType;
