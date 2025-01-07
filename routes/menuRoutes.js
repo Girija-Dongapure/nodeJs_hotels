@@ -33,7 +33,7 @@ router.get("/:tasteType",async(req,res) => {
             res.status(200).json(response)
         }
       else{
-        res.status(404).json({error:"menu item not found"});
+        res.status(404).json({error:"menu item not found"}); 
       }
     }catch(error){
         res.status(500).json({error:"Internal server error"})
@@ -65,5 +65,4 @@ router.delete("/:id",async(req,res) => {
         res.status(500).json({error:"Internal server error"})
     }
 })
-
 module.exports=router
